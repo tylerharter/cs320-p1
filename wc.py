@@ -4,7 +4,7 @@ def get_words(path):
     words = []
     f = open(path, encoding="utf-8")
     for line in f:
-        words.extend(line.split(" "))
+        words.extend(line.strip().split(" "))
     f.close()
     return words
 
