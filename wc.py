@@ -4,7 +4,8 @@ def get_words(path):
     words = []
     f = open(path, encoding="utf-8")
     for line in f:
-        words.extend(line.strip().split(" "))
+        for w in line.strip().split(" "):
+            words.append(w.upper())
     f.close()
     return words
 
@@ -18,9 +19,12 @@ def count_words(path, search):
 
 
 def main():
-    assert len(sys.argv) == 3 # TODO: give friendly warning instead
+    if len(sys.argv) != 3:
+        print("Usage: python3 wc.py <file.txt> (ALL|<word>)")
+        sys.exit(1)
+
     path = sys.argv[1]
-    search = sys.argv[2]
+    search = sys.argv[2].upper()
 
     if search.upper() == "ALL":
         counts = {}
