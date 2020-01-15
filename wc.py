@@ -2,17 +2,17 @@ import sys, json
 
 def get_words(path):
     words = []
-    f = open(path, encoding="utf-8")
-    for line in f:
-        for w in line.strip().split(" "):
-            words.append(w.upper())
-    f.close()
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            for w in line.strip().split(" "):
+                words.append(w.upper())
+    # file is closed automatically
     return words
 
 
-def count_words(path, search):
+def count_word(words, search):
     count = 0
-    for w in get_words(path):
+    for w in words:
         if w == search:
             count += 1
     return count
@@ -25,14 +25,15 @@ def main():
 
     path = sys.argv[1]
     search = sys.argv[2].upper()
+    words = get_words(path)
 
     if search.upper() == "ALL":
         counts = {}
-        for word in get_words(path):
-            counts[word] = count_words(path, word)
+        for word in words:
+            counts[word] = count_word(words, word)
         print(json.dumps(counts, sort_keys=True, indent=2))
     else:
-        print(count_words(path, search))
+        print(count_word(words, search))
 
 
 if __name__ == '__main__':
