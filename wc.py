@@ -29,7 +29,7 @@ def main():
 
     if search.upper() == "ALL":
         counts = {}
-        for word in words:
+        for word in set(words):
             counts[word] = count_word(words, word)
         print(json.dumps(counts, sort_keys=True, indent=2))
     else:
