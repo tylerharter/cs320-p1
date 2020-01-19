@@ -29,8 +29,8 @@ def main():
 
     if search.upper() == "ALL":
         counts = {}
-        for word in set(words):
-            counts[word] = count_word(words, word)
+        for word in words:
+            counts[word] += 1
         print(json.dumps(counts, sort_keys=True, indent=2))
     else:
         print(count_word(words, search))
