@@ -30,7 +30,10 @@ def main():
     if search.upper() == "ALL":
         counts = {}
         for word in words:
-            counts[word] += 1
+            if word in counts:
+                counts[word] += 1
+            else:
+                counts[word] = 1
         print(json.dumps(counts, sort_keys=True, indent=2))
     else:
         print(count_word(words, search))
