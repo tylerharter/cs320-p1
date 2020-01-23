@@ -20,7 +20,7 @@ def count_word(words, search):
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: python3 wc.py <file.txt> (ALL|<word>)")
+        print("USAGE: python3 wc.py <file.txt> (ALL|<word>)")
         sys.exit(1)
 
     path = sys.argv[1]
